@@ -4,14 +4,11 @@ object3D::object3D(std::vector<Point3D> points, std::vector<Vertecy3D> vertecys)
 }
 
 Point projectPoint(const Point3D& point3D, const cameraObject& camera, int width, int height) {
-    double scaleFactor = camera.focalLength / (camera.focalLength + point3D.z);
-    double projectedX = camera.x + scaleFactor * (point3D.x - camera.x);
-    double projectedY = camera.y + scaleFactor * (point3D.x - camera.y);
 
-    projectedX = (projectedX / camera.focalLength) * width;
-    projectedY = (projectedY / camera.focalLength) * height;
+    double projectedX = point3D.x / point3D.z * camera.focalLength + (width / 2);
+    double projectedY = point3D.y / point3D.z * camera.focalLength + (width / 2);
 
-    return {projectedX, projectedY};
+    return { projectedX, projectedY };
 }
 
 perspectiveObject3D object3D::renderPerspective(cameraObject camera, int windowWidth, int windowHeight) {

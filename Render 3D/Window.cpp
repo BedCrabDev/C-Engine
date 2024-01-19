@@ -108,6 +108,8 @@ void Window::DrawLine(Point A, Point B, COLORREF color) {
 	HDC hdcMem = CreateCompatibleDC(NULL);
 	HGDIOBJ oldBitmap = SelectObject(hdcMem, hBitmap);
 
+	//if (0 < A.x < 600 || 0 < A.y < 600 || 0 < B.x < 600 || 0 < B.y < 600) return;
+
 	int dx = abs(B.x - A.x);
 	int dy = abs(B.y - A.y);
 	int sx = (A.x < B.x) ? 1 : -1;
