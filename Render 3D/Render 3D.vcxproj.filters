@@ -29,9 +29,6 @@
     <ClInclude Include="Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Render 3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="linearMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>

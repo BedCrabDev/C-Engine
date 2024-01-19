@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     Window* pWindow = new Window(640, 480);
-    cameraObject camera = { 0, 0, -100, 10 };
+    cameraObject camera = { 0, 0, 100 };
     std::vector<Point3D> p = { {0, 0, 0}, {10, 0, 0}, {5, 0, 15}, {5, 10, 15} };
     std::vector<Vertecy3D> v = { {p[0], p[1]}, {p[1], p[2]}, {p[2], p[0]}, {p[1], p[3]}, {p[2], p[3]}, {p[0], p[3]} };
     object3D* obj = new object3D(p, v);
