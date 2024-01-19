@@ -75,14 +75,13 @@ bool Window::ProcessMessages() {
 void Window::writeBitmap() {
 	HDC hdc = GetDC(m_hWnd);
 	SIZE sBmp = sWind;
-	BITMAPINFO bmi; // This will hold the bitmap information
-	LPVOID pvBits; // the raw bitmap bits
+	BITMAPINFO bmi;
+	LPVOID pvBits;
 
 	if (hBitmap != NULL) {
 		BITMAP bmp;
 		GetObject(hBitmap, sizeof(BITMAP), &bmp);
 
-		// Initialize the BITMAPINFO structure
 		memset(&bmi, 0, sizeof(BITMAPINFO));
 		bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 		bmi.bmiHeader.biWidth = bmp.bmWidth;
@@ -91,14 +90,11 @@ void Window::writeBitmap() {
 		bmi.bmiHeader.biBitCount = bmp.bmBitsPixel;
 		bmi.bmiHeader.biCompression = BI_RGB; // Assuming uncompressed RGB
 
-		// Allocate memory for bitmap bits
 		pvBits = malloc(bmp.bmWidthBytes * bmp.bmHeight);
 
 		if (pvBits != NULL) {
-			// Retrieve bitmap bits
 			GetBitmapBits(hBitmap, bmp.bmWidthBytes * bmp.bmHeight, pvBits);
 
-			// Use StretchDIBits to draw the bitmap
 			StretchDIBits(hdc, 0, 0, sBmp.cx, sBmp.cy,
 				0, 0, bmp.bmWidth, bmp.bmHeight,
 				pvBits, &bmi,
@@ -112,7 +108,6 @@ void Window::DrawLine(Point A, Point B, COLORREF color) {
 	HDC hdcMem = CreateCompatibleDC(NULL);
 	HGDIOBJ oldBitmap = SelectObject(hdcMem, hBitmap);
 
-	// Calculate differences and direction
 	int dx = abs(B.x - A.x);
 	int dy = abs(B.y - A.y);
 	int sx = (A.x < B.x) ? 1 : -1;
